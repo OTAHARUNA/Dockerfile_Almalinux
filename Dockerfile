@@ -1,7 +1,7 @@
 # almalinuxのイメージを利用する
-# ARG SYSBASE=almalinux/8-base
-# FROM ${SYSBASE} as system-build
-FROM almalinux/almalinux
+ARG SYSBASE=almalinux/8-base
+FROM ${SYSBASE} as system-build
+# FROM almalinux/almalinux
 
 # COPY /etc/localtime /etc/localtime.org
 
@@ -18,7 +18,7 @@ RUN dnf -y install nginx
 
 RUN dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 RUN dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-RUN dnf module enable php:remi-8.0 -y
+RUN dnf module enable php:remi-8.1 -y
 RUN dnf install -y php php-cli
 RUN dnf install -y php-cli php-fpm php-curl php-mysqlnd php-gd php-opcache php-zip php-intl php-common php-bcmath php-imap php-imagick php-xmlrpc php-json php-readline php-memcached php-redis php-mbstring php-apcu php-xml
 
